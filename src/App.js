@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Meals from './Componenets/Meals/Meals';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { Route, Switch } from 'react-router-dom';
+import DetailsMeal from './Componenets/DetailsMeal/DetailsMeal';
+import NotFound from './Componenets/NotFound/NotFound';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <Meals />
+          </Route>
+
+          <Route exact path='/details/meals/:idMeal'>
+            <DetailsMeal />
+          </Route>
+
+          <Route exact path='*'>
+            <NotFound />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
